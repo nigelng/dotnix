@@ -1,0 +1,48 @@
+{
+  "commonOs": [
+    "ngrok",
+    "curl",
+    "wget",
+    "nixfmt"
+  ],
+  "mac": [
+    "m-cli",
+    "mas",
+    "cocoapods",
+    "slack",
+    "postman",
+    "zoom-us"
+  ],
+  "mas": {
+    "Keynote": 409183694,
+    "Pages": 409201541,
+    "Numbers": 409203825
+  },
+  "linux": [],
+  "brew": [
+    "pinentry-mac"
+  ],
+  "cask": [
+    "1password",
+    "1password-cli",
+    "android-studio",
+    "docker",
+    "caffeine",
+    "mongodb-compass",
+    "oracle-jdk",
+    "rectangle",
+    "studio-3t",
+    "via",
+    "raycast"
+  ],
+  "user": [
+    "jq",
+    "coreutils",
+    "awscli2",
+    "aws-vault",
+    "cachix",
+    "grc",
+    "mongodb-tools",
+    "yubikey-manager",
+  ]
+}

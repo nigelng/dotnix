@@ -1,0 +1,10 @@
+{
+  "screenshotFolder": "~/Downloads",
+  "fonts": [
+    "hack-font",
+    "fira-code",
+    "open-sans",
+    "source-code-pro",
+    "jetbrains-mono"
+  ]
+}
