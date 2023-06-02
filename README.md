@@ -3,8 +3,8 @@
 Using nix to provisioning devices on Mac OSX (M-series chip)
 
 ## Requirements
-
-  1> Install nix (as multi-user) [Installation - Nix](https://nixos.org/download.html)
+<!-- markdownlint-disable code-fence-style -->
+1. Install nix (as multi-user) [Installation - Nix](https://nixos.org/download.html)
 
   ```sh
   sh <(curl -L https://nixos.org/nix/install) --daemon
@@ -16,14 +16,14 @@ Using nix to provisioning devices on Mac OSX (M-series chip)
     nixbld$n; done
   ```
 
-  2> Install `nix-darwin`  [GitHub - LnL7/nix-darwin: nix modules for darwin](https://github.com/LnL7/nix-darwin)
+2. Install `nix-darwin`  [GitHub - LnL7/nix-darwin: nix modules for darwin](https://github.com/LnL7/nix-darwin)
 
   ```bash
   nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
   ./result/bin/darwin-installer
   ```
 
-  3> Install `home-manager` (vers 23.05)
+3. Install `home-manager` (vers 23.05)
 
   ```bash
   nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager

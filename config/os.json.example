@@ -6,5 +6,9 @@
     "open-sans",
     "source-code-pro",
     "jetbrains-mono"
+  ],
+  "trustedUsers": [],
+  "allowedUsers": [
+    "*"
   ]
 }
