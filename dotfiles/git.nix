@@ -4,6 +4,8 @@ let
   gitIgnore = builtins.fromJSON (builtins.readFile ../config/gitignore.json);
   userDetails = builtins.fromJSON (builtins.readFile ../config/user.json);
 in {
+  home.packages = [ pkgs.github-copilot-cli ];
+
   programs.gh = {
     enable = true;
     settings = {

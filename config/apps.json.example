@@ -1,11 +1,9 @@
 {
-  "commonOs": [
+  "system": [
     "ngrok",
     "curl",
     "wget",
-    "nixfmt"
-  ],
-  "mac": [
+    "nixfmt",
     "m-cli",
     "mas",
     "cocoapods",
@@ -18,7 +16,6 @@
     "Pages": 409201541,
     "Numbers": 409203825
   },
-  "linux": [],
   "brew": [
     "pinentry-mac"
   ],
@@ -40,7 +37,6 @@
     "coreutils",
     "awscli2",
     "aws-vault",
-    "cachix",
     "grc",
     "mongodb-tools",
     "yubikey-manager",

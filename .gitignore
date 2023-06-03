@@ -1,4 +1,4 @@
 .vscode
 !config/*.example
 config/*.json
-private
+private*

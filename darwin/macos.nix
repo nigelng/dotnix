@@ -1,7 +1,12 @@
-{ ... }:
-
-{
+{ pkgs, ... }:
+let
+  macosSettings = builtins.fromJSON (builtins.readFile ../config/macos.json);
+  macosFonts =
+    builtins.map (app: builtins.getAttr app pkgs) macosSettings.fonts;
+in {
   system = {
+    stateVersion = 4;
+
     keyboard = { enableKeyMapping = true; };
 
     defaults = {
@@ -60,8 +65,14 @@
         mru-spaces = false;
       };
 
-      screencapture.location = "~/Downloads";
+      screencapture.location = macosSettings.screenshotFolder;
     };
+  };
+
+  # fonts
+  fonts = {
+    fontDir.enable = true;
+    fonts = macosFonts;
   };
 
   # Add ability to used TouchID for sudo authentication

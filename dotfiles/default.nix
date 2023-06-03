@@ -2,12 +2,13 @@
 let
   apps = builtins.fromJSON (builtins.readFile ../config/apps.json);
   # mac osx specific
-  userApps = builtins.map (app: builtins.getAttr app pkgs) apps.commonOs;
+  userApps = builtins.map (app: builtins.getAttr app pkgs) apps.user;
 in {
   imports = [
     ./direnv.nix
     ./exa.nix
     ./editors.nix
+    ./files.nix
     ./fzf.nix
     ./git.nix
     ./gpg.nix

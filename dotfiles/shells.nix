@@ -8,7 +8,7 @@
       set fish_color_autosuggestion brblack
     '';
     loginShellInit = ''
-      # Brew
+      # brew path
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
     interactiveShellInit = ''
@@ -63,6 +63,10 @@
         name = "bass";
         src = bass.src;
       }
+      {
+        name = "github-copilot-cli-fish";
+        src = github-copilot-cli-fish.src;
+      }
     ];
   };
 
@@ -112,11 +116,13 @@
       bindkey '^F' forward-word # Move next word in line
 
       unset key
+
+      # 1P completion
+      eval "$(op completion zsh)"; compdef _op op
     '';
 
     profileExtra = ''
-      # 1P and Brew
-      eval "$(op completion zsh)"; compdef _op op
+      # brew path
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
   };
