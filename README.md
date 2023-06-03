@@ -1,19 +1,13 @@
 # dotnix
 
-Using nix to provisioning devices on Mac OSX (M-series chip)
+Using nix to provisioning devices on Mac OSX (M-series chip) / WSL
 
 ## Requirements
 <!-- markdownlint-disable code-fence-style -->
-1. Install nix (as multi-user) [Installation - Nix](https://nixos.org/download.html)
+1. Install nix (as multi-user) [nix-installer](https://github.com/DeterminateSystems/nix-installer)
 
   ```sh
-  sh <(curl -L https://nixos.org/nix/install) --daemon
-
-  # setting up the build users
-  groupadd -r nixbld
-  for n in $(seq 1 10); do useradd -c "Nix build user $n" \
-    -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
-    nixbld$n; done
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
   ```
 
 2. Install `nix-darwin`  [GitHub - LnL7/nix-darwin: nix modules for darwin](https://github.com/LnL7/nix-darwin)
@@ -30,7 +24,23 @@ Using nix to provisioning devices on Mac OSX (M-series chip)
   nix-channel --update
   ```
 
-## Update configurations
+Notes:
+
+- If `/etc/nix/nix.conf` already existed, move it to `~/.config/nix/nix.conf`
+- If `/etc/shells` already existed, back up and remove
+- If running into error `...ln: failed to create symbolic link '/run': Read-only file system`
+
+  ```sh
+  sudo /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
+  ```
+
+- if running to warning `warning: Nix search path entry '/nix/var/nix/profiles/per-user/root/channels' does not exist, ignoring`
+
+  ```sh
+  sudo cp -R /nix/var/nix/profiles/per-user/<username>/channels /nix/var/nix/profiles/per-user/root/
+  ```
+
+## Setup configurations
 
 - Run `sh configure.sh`
 - Update `./config/<file>.json` with specific details
@@ -40,3 +50,8 @@ Using nix to provisioning devices on Mac OSX (M-series chip)
 - On MacOSX `sh darwin.sh`
 - On WSL `sh wsl.sh`
 - On Linux `sh linux.sh`
+
+## Caveats
+
+- Only brews / casks that specified in `./config/apps.json` will be installed. Non specified will be removed
+- Mas refers to `Mac App Store` apps will be installed as extra. Existing Mas id can located via [mas-cli](https://github.com/mas-cli/mas)

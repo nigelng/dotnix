@@ -112,11 +112,12 @@
       bindkey '^F' forward-word # Move next word in line
 
       unset key
+
+      eval "$(op completion zsh)"; compdef _op op
     '';
 
     profileExtra = ''
-      # 1P and Brew
-      eval "$(op completion zsh)"; compdef _op op
+      # Brew
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
   };

@@ -3,7 +3,8 @@ let
   apps = builtins.fromJSON (builtins.readFile ../config/apps.json);
   # mac osx specific
   darwinApps = builtins.map (app: builtins.getAttr app pkgs) apps.commonOs;
-  userDetails = builtins.fromJSON (builtins.readFile ../config/user.json);
+  currentUser = builtins.getEnv "USER";
+  currentUserDir = builtins.getEnv "HOME";
 in {
 
   imports =
@@ -15,8 +16,8 @@ in {
   };
 
   # dotfiles
-  users.users.${userDetails.homeDir} = {
-    home = "/Users/${userDetails.homeDir}";
+  users.users.${currentUser} = {
+    home = currentUserDir;
     shell = pkgs.fish;
   };
 
@@ -25,7 +26,7 @@ in {
   system.stateVersion = 4;
 
   home-manager = {
-    users.${userDetails.homeDir}.home.file = {
+    users.${currentUser}.home.file = {
       ".gnupg/gpg-agent.conf".source = ./home-files/gpg-agent-conf;
       ".config/terminal/my.terminal".source = ./home-files/terminal-theme;
     };

@@ -2,8 +2,8 @@
 let
   apps = builtins.fromJSON (builtins.readFile ../config/apps.json);
   commonApps = builtins.map (app: builtins.getAttr app pkgs) apps.commonOs;
-  userDetails = builtins.fromJSON (builtins.readFile ../config/user.json);
   osDetails = builtins.fromJSON (builtins.readFile ../config/os.json);
+  currentUser = builtins.getEnv "USER";
 in {
   nixpkgs.config.allowUnfree = true;
 
@@ -12,8 +12,8 @@ in {
     configureBuildUsers = true;
 
     settings = {
-      trusted-users = [ userDetails.homeDir ] ++ osDetails.trustedUsers;
-      allowed-users = [ userDetails.homeDir ] ++ osDetails.allowedUsers;
+      trusted-users = [ currentUser ] ++ osDetails.trustedUsers;
+      allowed-users = [ currentUser ] ++ osDetails.allowedUsers;
     };
 
     gc = {
@@ -35,7 +35,7 @@ in {
     shells = with pkgs; [ fish zsh ];
   };
 
-  users = { users.${userDetails.homeDir} = { name = userDetails.homeDir; }; };
+  users = { users.${currentUser} = { name = currentUser; }; };
 
   programs = {
     zsh.enable = true;
@@ -60,6 +60,6 @@ in {
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.${userDetails.homeDir} = (import ../dotfiles);
+    users.${currentUser} = (import ../dotfiles);
   };
 }
