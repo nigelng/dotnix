@@ -1,3 +1,5 @@
+# Deprecated - See [dotnix-flake](https://github.com/nigelng/dotnix-flake) for improved solution
+
 # dotnix
 
 Using nix to provisioning devices on Mac OSX (M-series chip). Inspect `app.json.example` for the default set of apps / packages will be installed.
